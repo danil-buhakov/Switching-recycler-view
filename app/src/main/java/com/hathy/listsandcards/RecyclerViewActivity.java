@@ -2,25 +2,21 @@ package com.hathy.listsandcards;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewActivity extends Activity {
 
-    private List<Person> persons;
+    private List<Boat> boats;
     private RecyclerView rv;
-    private Button btnChange;
+    private Button btnText;
+    private Button btnAudio;
     private int stage;
     private LinearLayoutManager llm;
     private GridLayoutManager glm;
@@ -32,22 +28,11 @@ public class RecyclerViewActivity extends Activity {
         setContentView(R.layout.recyclerview_activity);
 
         rv=(RecyclerView)findViewById(R.id.rv);
-        btnChange = (Button)findViewById(R.id.btnChange);
+        btnText = (Button)findViewById(R.id.btnText);
+        btnAudio = (Button)findViewById(R.id.btnAudio);
 
 
-        btnChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(stage == 0){
-                    rv.setLayoutManager(glm);
-                    stage =1;
-                }
-                else{
-                    rv.setLayoutManager(llm);
-                    stage =0;
-                }
-            }
-        });
+
         stage =0;
         llm = new LinearLayoutManager(this);
         glm = new GridLayoutManager(this, 2);
@@ -55,17 +40,46 @@ public class RecyclerViewActivity extends Activity {
 
         initializeData();
         initializeAdapter();
+        btnText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boats.get(0).addText();
+                initializeAdapter();
+                rv.invalidateItemDecorations();
+            }
+        });
+
+        btnAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boats.get(0).addAudio();
+                initializeAdapter();
+                rv.invalidateItemDecorations();
+            }
+        });
+
+    }
+
+    private void changeLayoutManager(){
+        if(stage == 0){
+            rv.setLayoutManager(glm);
+            stage =1;
+        }
+        else{
+            rv.setLayoutManager(llm);
+            stage =0;
+        }
     }
 
     private void initializeData(){
-        persons = new ArrayList<>();
-        persons.add(new Person( R.drawable.emma));
-        persons.add(new Person( R.drawable.lavery));
-        persons.add(new Person( R.drawable.lillie));
+        boats = new ArrayList<>();
+        boats.add(new Boat( R.drawable.boat_long));
+        boats.add(new Boat( R.drawable.boat_garden));
+        boats.add(new Boat( R.drawable.boat_black));
     }
 
     private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(persons);
+        RVAdapter adapter = new RVAdapter(boats);
         rv.setAdapter(adapter);
     }
 }
