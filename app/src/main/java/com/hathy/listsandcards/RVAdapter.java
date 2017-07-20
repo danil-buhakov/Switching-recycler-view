@@ -18,17 +18,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
         CardView cv;
         ImageView personPhoto;
-        LinearLayout layoutText;
-        LinearLayout layoutAudio;
+        LinearLayout layoutDescription;
 
         PersonViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
-            layoutText = (LinearLayout) itemView.findViewById(R.id.lltText);
-            layoutAudio = (LinearLayout) itemView.findViewById(R.id.lltAudio);
-
-
+            layoutDescription = (LinearLayout) itemView.findViewById(R.id.lltDescription);
         }
     }
 
@@ -54,19 +50,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
         Boat currBoat = boats.get(i);
         personViewHolder.personPhoto.setImageResource(currBoat.photoId);
-        for(int j =0;j<currBoat.text.size();j++){
-            Log.d("MyLog", "Text №" + (j+1) + " showed!");
-            View v = LayoutInflater.from(personViewHolder.layoutText.getContext()).inflate(R.layout.text_description, personViewHolder.layoutText, false);
-            TextView textView = (TextView) v.findViewById(R.id.txtText);
-            textView.setText(currBoat.text.toArray()[j].toString());
-            personViewHolder.layoutText.addView(v);
-        }
-        for(int j =0;j<currBoat.audio.size();j++){
-            Log.d("MyLog", "Audio №" + (j+1) + " showed!");
-            View v = LayoutInflater.from(personViewHolder.layoutAudio.getContext()).inflate(R.layout.audio_description, personViewHolder.layoutAudio, false);
-            TextView textView = (TextView) v.findViewById(R.id.txtAudio);
-            textView.setText(currBoat.audio.toArray()[j].toString());
-            personViewHolder.layoutAudio.addView(v);
+        for(int j =0;j<currBoat.description.size();j++){
+            Log.d("MyLog", "Description №" + (j+1) + " showed!");
+            View v = LayoutInflater.from(personViewHolder.layoutDescription.getContext()).inflate(R.layout.description, personViewHolder.layoutDescription, false);
+            TextView textView = (TextView) v.findViewById(R.id.txtDescription);
+            textView.setText(currBoat.description.toArray()[j].toString());
+            personViewHolder.layoutDescription.addView(v);
         }
     }
 

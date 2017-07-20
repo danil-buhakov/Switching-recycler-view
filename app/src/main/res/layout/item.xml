@@ -19,19 +19,11 @@
             android:layout_marginRight="16dp" />
 
         <LinearLayout
-            android:id="@+id/lltText"
+            android:id="@+id/lltDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below ="@+id/person_photo">
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/lltAudio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below ="@+id/lltText">
 
         </LinearLayout>
 

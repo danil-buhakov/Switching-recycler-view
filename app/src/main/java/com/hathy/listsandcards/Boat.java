@@ -7,20 +7,18 @@ import java.util.List;
 
 public class Boat {
     int photoId;
-    List<String> text;
-    List<String> audio;
+    List<String> description;
 
     Boat(int photoId) {
         this.photoId = photoId;
-        text= new ArrayList<>();
-        audio= new ArrayList<>();
+        description= new ArrayList<>();
     }
     public void addText(){
-        text.add("Text №"+(text.size()+1));
-        Log.d("MyLog","Text №"+text.size()+ " added!");
+        description.add("Text №"+(description.size()+1));
+        Log.d("MyLog","Text №"+description.size()+ " added!");
     }
     public void addAudio(){
-        audio.add("Audio №"+(audio.size()+1));
-        Log.d("MyLog","Audio №"+audio.size()+ " added!");
+        description.add("Audio №"+(description.size()+1));
+        Log.d("MyLog","Audio №"+description.size()+ " added!");
     }
 }
